@@ -1,0 +1,45 @@
+{
+  "name": "software-demo-1",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all",
+    "last 2 versions",
+    "iOS >= 10",
+    "Android >= 6"
+  ],
+  "dependencies": {
+    "@heroicons/react": "^2.0.18",
+    "framer-motion": "^10.16.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^4.11.0",
+    "react-router-dom": "^6.30.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.15",
+    "core-js": "^3.33.0",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "postcss": "^8.4.31",
+    "postcss-preset-env": "^9.1.0",
+    "regenerator-runtime": "^0.14.0",
+    "tailwindcss": "^3.3.0",
+    "terser": "^5.39.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.0"
+  }
+}
