@@ -48,33 +48,39 @@ export const Layout = ({ children }: Props) => {
         </div>
       </aside>
 
-      <nav className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-100 shadow-lg z-50 lg:hidden">
-        <div className="grid grid-cols-6 gap-0.5 px-1">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                `flex flex-col items-center justify-center py-2.5 px-1 ${
-                  isActive 
-                    ? 'text-blue-600 bg-blue-50/50 rounded-lg -translate-y-0.5 transition-all duration-200' 
-                    : 'text-gray-600'
-                }`
-              }
-            >
-              <item.icon className="h-5 w-5 mb-1" />
-              <span className="text-xs truncate max-w-[4rem]">{item.label}</span>
-            </NavLink>
-          ))}
+      <nav className="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm z-50 lg:hidden">
+        <div className="flex justify-between items-center h-16 px-4">
+          <h1 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">智慧校园</h1>
+          <div className="flex space-x-1">
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                className={({ isActive }) =>
+                  `group flex flex-col items-center justify-center p-2 rounded-lg transition-all duration-300 ${
+                    isActive 
+                      ? 'text-blue-600 bg-blue-50/80' 
+                      : 'text-gray-600 hover:bg-gray-50/80'
+                  }`
+                }
+              >
+                <item.icon className="h-5 w-5 transition-transform group-hover:scale-110 duration-200" />
+                <span className="text-xs mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">{item.label}</span>
+              </NavLink>
+            ))}
+          </div>
         </div>
       </nav>
 
-      <main className="lg:pl-56 min-h-screen">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-28 lg:pb-6">
+      <main className="lg:pl-56 min-h-screen pt-16 lg:pt-0">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ 
+              duration: 0.4,
+              ease: [0.4, 0, 0.2, 1]
+            }}
           >
             {children}
           </motion.div>
