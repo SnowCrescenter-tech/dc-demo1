@@ -8,6 +8,27 @@ export interface Course {
   weeks: number[];
 }
 
+export interface CourseDetail extends Course {
+  description: string;
+  assessment: {
+    assignments: number;
+    midterm: number;
+    final: number;
+  };
+  textbook: {
+    name: string;
+    author: string;
+    isbn: string;
+    required: boolean;
+  }[];
+  reviews: {
+    semester: string;
+    rating: number;
+    comments: string;
+  }[];
+  syllabus?: string;
+}
+
 export interface BusRoute {
   id: string;
   name: string;
@@ -32,10 +53,10 @@ export interface BusRoute {
 export interface Venue {
   id: string;
   name: string;
-  type: 'library' | 'basketball' | 'classroom';
+  type: string;
   capacity: number;
   currentCount: number;
-  status: 'available' | 'busy' | 'full';
+  status: string;
   openTime: string;
   closeTime: string;
 }
@@ -49,7 +70,7 @@ export interface Event {
   endTime: string;
   organizer: string;
   tags: string[];
-  image?: string;
+  image: string;
 }
 
 export interface Canteen {
@@ -63,9 +84,11 @@ export interface Canteen {
       name: string;
       waitingCount: number;
       popularDishes: string[];
-      status: 'open' | 'closed';
+      status: string;
     }[];
   }[];
   crowdLevel: number;
   peakHours: string[];
 }
+
+export type ViewMode = 'daily' | 'weekly' | 'full';

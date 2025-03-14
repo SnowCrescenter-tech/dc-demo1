@@ -2,149 +2,151 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 页面过渡动画 */
-@keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
+/* 定义动画变量 */
+:root {
+  --transition-duration: 300ms;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @layer base {
-  html {
-    -webkit-tap-highlight-color: transparent;
-  }
-  
   body {
-    @apply bg-gray-50/30 text-gray-900 antialiased overflow-x-hidden;
+    @apply bg-gradient-to-br from-white via-blue-50/30 to-blue-100/20 text-gray-900 antialiased min-h-screen;
+    background-attachment: fixed;
   }
 
-  /* 隐藏展示型文本的光标 */
-  p, span, h1, h2, h3, h4, h5, h6,
-  .page-title, .section-title, 
-  .content-text, .info-tag,
-  [class*="text-"] {
-    caret-color: transparent;
+  /* 自定义滚动条样式 */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-200/80 rounded-full hover:bg-gray-300/80;
+    transition: background-color var(--transition-duration) var(--transition-timing);
   }
 }
 
 @layer components {
-  /* 导航项样式 - Chrome风格 */
-  .nav-item {
-    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg 
-           text-gray-600 hover:text-gray-900
-           transition-all duration-300 ease-out
-           hover:bg-gray-100/70 hover:shadow-sm
-           relative overflow-hidden
-           font-medium text-sm;
-  }
-  
-  .nav-item.active {
-    @apply bg-blue-50/90 text-blue-600 font-semibold
-           shadow-sm hover:shadow-md
-           hover:bg-blue-50/90;
-  }
-
-  .nav-item.active::after {
-    content: '';
-    @apply absolute bottom-0 left-0 right-0
-           h-0.5 bg-blue-500 scale-x-100
-           transform transition-transform duration-300;
-  }
-
-  /* 卡片组件样式 */
   .card {
-    @apply bg-white/95 backdrop-blur-sm rounded-xl 
-           shadow-sm hover:shadow-md
-           border border-gray-100/80
-           p-5 transition-all duration-300 ease-out;
+    @apply bg-white p-4 rounded-xl shadow-sm border border-gray-100;
+    transition: all var(--transition-duration) var(--transition-timing);
   }
 
-  /* 标题样式 */
-  .page-title {
-    @apply text-2xl font-bold text-gray-900 
-           bg-gradient-to-br from-gray-900 to-gray-600 
-           bg-clip-text text-transparent mb-6
-           transition-opacity duration-300;
-  }
-  
-  /* 次级标题 */
   .section-title {
-    @apply text-lg font-semibold text-gray-800 mb-4
-           transition-colors duration-300;
+    @apply text-lg font-medium mb-4;
+    transition: color var(--transition-duration) var(--transition-timing);
   }
 
-  /* 内容文本 */
-  .content-text {
-    @apply text-gray-600 leading-relaxed
-           transition-colors duration-300;
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-50;
+    transition: all var(--transition-duration) var(--transition-timing);
   }
 
-  /* 信息标签 */
-  .info-tag {
-    @apply inline-flex items-center gap-1.5 px-2.5 py-1 
-           rounded-md text-sm font-medium
-           bg-blue-50/70 text-blue-600
-           transition-all duration-300
-           hover:bg-blue-100/80;
+  .nav-item.active {
+    @apply text-blue-600 bg-blue-50;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold text-gray-900 mb-6;
+  }
+
+  /* 按钮和输入框统一样式 */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-blue-500/50;
+    transition: all var(--transition-duration) var(--transition-timing);
+  }
+
+  .btn-primary {
+    @apply bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300;
+  }
+
+  .input {
+    @apply px-3 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 bg-white shadow-sm;
   }
 }
 
-/* Chrome风格样式覆盖 */
-@layer utilities {
-  /* Chrome风格滚动条 */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    @apply bg-transparent;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    @apply bg-gray-300/80 rounded-full 
-           hover:bg-gray-400/80
-           transition-colors duration-200
-           border-4 border-solid border-transparent
-           bg-clip-padding;
-  }
+/* 文本渐变效果 */
+.gradient-text {
+  @apply bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent;
+}
 
-  /* 页面切换动画 */
-  .page-enter {
-    @apply opacity-0 translate-y-4;
-  }
+/* 隐藏滚动条但保持功能 */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-  .page-enter-active {
-    @apply opacity-100 translate-y-0
-           transition-all duration-300 ease-out;
-  }
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
-  .page-exit {
-    @apply opacity-100;
-  }
+/* 阴影和边框效果 */
+.shadow-hover {
+  @apply transition-shadow duration-300;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.05);
+}
 
-  .page-exit-active {
-    @apply opacity-0 translate-y-4
-           transition-all duration-300 ease-in;
-  }
+.shadow-hover:hover {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  /* 移除默认输入框样式 */
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus {
-    -webkit-text-fill-color: theme('colors.gray.900');
-    -webkit-box-shadow: 0 0 0px 1000px theme('colors.white') inset;
-    transition: background-color 5000s ease-in-out 0s;
-  }
+/* 卡片基础效果 */
+.card-base {
+  @apply bg-white shadow-sm rounded-lg;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
 
-  /* Chrome风格焦点环 */
-  .focus-chrome {
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-500/50 
-           focus:ring-offset-2 focus:ring-offset-white;
-  }
+.card-hover {
+  @apply hover:shadow-md transition-shadow duration-300;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* 动画过渡效果 */
+.custom-transition {
+  transition-property: all;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing);
+}
+
+/* 页面切换动画 */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-duration), transform var(--transition-duration);
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity var(--transition-duration), transform var(--transition-duration);
+}
+
+/* 鼠标跟随效果 */
+.cursor-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle closest-side, rgba(59, 130, 246, 0.03), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  transition: all 0.1s ease;
 }
