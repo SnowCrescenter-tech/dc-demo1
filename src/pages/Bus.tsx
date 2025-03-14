@@ -17,7 +17,7 @@ export const Bus = () => {
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
         {mockBusRoutes.map((route, index) => (
           <AnimatedCard key={route.id}>
-            <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md border border-gray-100 transition-all duration-200">
+            <div className="bg-white rounded-xl p-5 transition-all duration-300">
               <div className="flex justify-between items-start">
                 <m.h3 
                   className="text-lg font-semibold text-gray-900"
@@ -44,7 +44,7 @@ export const Bus = () => {
               
               <div className="mt-4 space-y-3">
                 <m.div 
-                  className="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-lg"
+                  className="flex items-center gap-2 text-sm text-gray-600 bg-gray-50/80 px-3 py-2 rounded-lg"
                   whileHover={{ scale: 1.02, y: -2 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
@@ -53,7 +53,7 @@ export const Bus = () => {
                 </m.div>
                 
                 <m.div 
-                  className="flex items-center gap-2 text-sm text-gray-600 bg-gray-50 px-3 py-2 rounded-lg"
+                  className="flex items-center gap-2 text-sm text-gray-600 bg-gray-50/80 px-3 py-2 rounded-lg"
                   whileHover={{ scale: 1.02, y: -2 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >

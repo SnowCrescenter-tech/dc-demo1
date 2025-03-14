@@ -82,7 +82,7 @@ export const AnimatedListItem = ({ children, className = '', index }: AnimatedLi
           ease: "easeOut",
         }
       }}
-      className={`shadow-hover ${className}`}
+      className={className}
     >
       {children}
     </motion.div>
@@ -135,7 +135,7 @@ export const AnimatedModal = ({ children, className = '' }: Props) => {
           ease: [0.4, 0, 1, 1],
         }
       }}
-      className={`bg-white shadow-lg ${className}`}
+      className={className}
     >
       {children}
     </motion.div>
